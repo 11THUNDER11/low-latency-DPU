@@ -1,7 +1,3 @@
-Ecco la versione aggiornata e professionale del **README.md** principale per la tua repository. Ho integrato le tue specifiche di accesso, le istruzioni di installazione ufficiali e lo stato attuale che abbiamo rilevato dall'output di OVS.
-
----
-
 # 🚀 Low-Latency DPU Trading Lab (DPU-3 Focus)
 
 A comprehensive development environment for **NVIDIA BlueField-3 (DPU-3)**, optimized for high-frequency trading (HFT) and hardware-accelerated networking via DOCA.
