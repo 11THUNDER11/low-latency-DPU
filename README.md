@@ -19,14 +19,12 @@ ssh acatellani@<IP_DEL_SERVER>
 
 ```
 
-*Note: Ensure your SSH key (`DPUKeys`) is present in your `~/.ssh/` folder.*
-
 ### DPU Internal Access (ARM Cores)
 
 Once inside the host, you can access the DPU-3 ARM processors directly:
 
 ```bash
-ssh -i DPUKeys ubuntu@192.168.17.79
+ssh -i DPUKeys ubuntu@192.168.100.2
 
 ```
 
