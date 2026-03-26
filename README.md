@@ -1,4 +1,4 @@
-# 🚀 Low-Latency DPU Trading Lab (DPU-3 Focus)
+# 🚀 Low-Latency DPU Lab (DPU-3 Focus)
 
 A comprehensive development environment for **NVIDIA BlueField-3 (DPU-3)**, optimized for hardware-accelerated networking via DOCA.
 
@@ -57,9 +57,6 @@ doca_version
 # Should return: DOCA_VERSION: 3.2.1-044000 (or similar)
 
 ```
-Here is the English version of the **### Setting up the network** section, tailored for your DPU-3 Trading Lab documentation.
-
----
 
 ### Setting up the Network
 

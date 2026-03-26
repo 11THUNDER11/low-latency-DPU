@@ -2,11 +2,11 @@
 
 ## 🎯 Experiment Objectives
 
-The goal of this experiment is to initialize the **DOCA Flow** environment and validate the hardware datapath on the **BlueField-3 (DPU-3)**. This "bootstrap" phase is mandatory; it establishes the zero-latency silicon path required to intercept or steer financial market data.
+The goal of this experiment is to initialize the **DOCA Flow** environment and validate the hardware datapath on the **BlueField-3 (DPU-3)**. This "bootstrap" phase is mandatory; it establishes the zero-latency silicon path required to intercept or steer incoming data.
 
 1. **Hardware Offloading**: Program the ConnectX-7 eSwitch to identify and destroy irrelevant packets at wire speed (100Gbps+) before they consume CPU cycles.
 2. **Jitter Elimination**: Move packet processing entirely from the ARM CPU to the NIC's **TCAM (Ternary Content-Addressable Memory)**.
-3. **Bump-in-the-Wire Verification**: Ensure that market data "ticks" travel through a dedicated wire-to-wire silicon path, bypassing the Operating System and host memory entirely.
+3. **Bump-in-the-Wire Verification**: Ensure that data travel through a dedicated wire-to-wire silicon path, bypassing the Operating System and host memory entirely.
 
 ---
 
@@ -55,7 +55,6 @@ A critical concept in DOCA is that **creation order is backwards from execution 
 2. **The Drop Pipe (Created 2nd, Executed 1st)**:
 * **The Match**: The primary filter. It is configured as the **Root** table, meaning packets hit this first.
 * **The Action**: If it matches specific "noise" (e.g., unwanted IPs), it destroys the packet. If it misses, it forwards the packet to the Hairpin Pipe.
-
 
 
 #### **C. The Lifecycle of a Rule**
