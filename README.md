@@ -1,6 +1,6 @@
-# 🚀 Low-Latency DPU Lab (DPU-3 Focus)
+# 🚀 Low-Latency DPU Lab
 
-A comprehensive development environment for **NVIDIA BlueField-3 (DPU-3)**, optimized for hardware-accelerated networking via DOCA.
+A comprehensive development environment for **NVIDIA BlueField-3**, optimized for hardware-accelerated networking via DOCA.
 
 ## 🎯 Project Vision
 
@@ -100,22 +100,6 @@ ssh -i DPUKeys ubuntu@192.168.100.2
 
 ```
 ---
-
-## 🖥️ DPU Current State & Datapath
-
-The DPU-3 is currently configured in **Switchdev Mode** with a dual-bridge architecture, ideal for separating Market Data (Feed) from Order Entry (Execution).
-
-### OVS Mapping (Live Status)
-
-Current logical topology identified via `ovs-vsctl show`:
-
-| Bridge | Port | Interface | Role |
-| --- | --- | --- | --- |
-| **ovsbr1** | `p0` | Uplink 0 | **Market Data Ingress** (External) |
-|  | `pf0hpf` | Representor | **Host Path** (To x86 CPU) |
-|  | `en3f0...` | SF | **DPU Local Path** (To ARM Cores) |
-| **ovsbr2** | `p1` | Uplink 1 | **Order Execution** (To Broker) |
-|  | `pf1hpf` | Representor | **Host Path** (To x86 CPU) |
 
 ### Kernel Details
 
