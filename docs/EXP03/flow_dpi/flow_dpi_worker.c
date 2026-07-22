@@ -69,9 +69,6 @@ void run_dpi_worker(uint16_t port_id, uint16_t queue_id)
             }
         }
         
-        /* * usleep(1) riduce il consumo di CPU ARM durante i test. 
-         * In produzione si rimuove per latenza sub-microsecondo.
-         */
         usleep(1);
     }
 

@@ -1,0 +1,19 @@
+=== Hardware Dump for Pipe: tcp_rules ===
+  id:1,name:TCP_PIPE
+Queue #0: flow entry count:50
+Queue #1: flow entry count:0
+Queue #2: flow entry count:0
+Queue #3: flow entry count:0
+Queue #4: flow entry count:0
+Queue #5: flow entry count:0
+Queue #6: flow entry count:0
+Queue #7: flow entry count:0
+Queue #8: flow entry count:0
+Queue #9: flow entry count:0
+Queue #10: flow entry count:0
+Queue #11: flow entry count:0
+Queue #12: flow entry count:0
+Queue #13: flow entry count:0
+Queue #14: flow entry count:0
+Queue #15: flow entry count:0
+Queue #16: flow entry count:0
