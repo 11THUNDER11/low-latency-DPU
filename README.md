@@ -113,6 +113,10 @@ ssh -i DPUKeys ubuntu@192.168.100.2
 0. **EXP00: Exploration** - Commenting an explainig `flow_drop` sample  compilation and linking.
 1. **EXP01: Datapath Init** - Commenting the code of `flow_drop` sample.
 2. **EXP02: Packet Steering** - Creating `flow_count`for filtering UDP and TCP packets in hardware.
+3. **EXP03: Deep packet inspection ** — Implementing .c functions to dynamically analyzing packet informations.
+4. **EXP04: Application example** — Dynamic high frequency trading example using DOCA sample.
+5. **EXP05: Fast slow path** — fast-path offloading optimized for low latency packet routing.
+6. **EXP06: Biderectional flow** — Studying bi-directional flow between the 2 DPUs and the VMs.
 
 ---
 
