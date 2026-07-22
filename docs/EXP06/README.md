@@ -3,7 +3,7 @@
 ## Architecture & Flow Diagrams
 
 ### 1. High-Level System Architecture
-This diagram illustrates the separation between the **Hardware Fast Path** (NVIDIA ConnectX eSwitch) and the **Software Slow Path** running on the ARM CPU cores.
+Thi s diagram illustrates the separation between the **Hardware Fast Path** (NVIDIA ConnectX eSwitch) and the **Software Slow Path** running on the ARM CPU cores.
 
 ```mermaid
 flowchart TB
@@ -132,63 +132,4 @@ sequenceDiagram
 meson build
 ninja -C build
 sudo ./build/doca_flow_count -a 0000:03:00.1,dv_flow_en=2,representor=[65535]
-```
-
-
-
-```mermaid
-flowchart TB
-    subgraph DPU_ARM ["1. DPU ARM Subsystem (dpu-3-os User Space)"]
-        APP["flow_count Application<br/><i>(DPDK / DOCA Control Plane)</i>"]
-        
-        subgraph DPDK_PORTS ["DPDK Ethdev Layer"]
-            DPDK_P0["DPDK Port 0<br/><code>0000:03:00.0</code><br/><i>(Primary PF / Switch Master)</i>"]
-            DPDK_REP0["DPDK Port 1<br/><code>0000:03:00.0_representor_0</code><br/><i>(Representor 0)</i>"]
-            DPDK_REP1["DPDK Port 2<br/><code>0000:03:00.0_representor_1</code><br/><i>(Representor 1)</i>"]
-        end
-    end
-
-    subgraph PCIE ["2. PCIe Subsystem"]
-        PCI_DEV["PCI Endpoint<br/><code>0000:03:00.0</code><br/><i>(NVIDIA ConnectX PF0)</i>"]
-    end
-
-    subgraph ESWITCH ["3. Hardware eSwitch Engine (ConnectX Silicon)"]
-        direction TB
-        FLOW_ENGINE["eSwitch Flow Steering Engine<br/><i>(DOCA Flow Hardware Tables)</i>"]
-        
-        subgraph VPORTS ["eSwitch Representor Endpoints"]
-            REP0_HW["vport / Rep 0<br/><i>(Uplink 0 Representor)</i>"]
-            REP1_HW["vport / Rep 1<br/><i>(Host PF / Uplink 1 Representor)</i>"]
-        end
-        
-        subgraph PHYSICAL ["Physical & Host Interfaces"]
-            PHY_PORT0["Physical Port 0 (p0)<br/><i>(Wire / Network)</i>"]
-            PHY_PORT1["Host PF / Physical Port 1 (p1)<br/><i>(Host / Wire)</i>"]
-        end
-    end
-
-    %% DPDK App Connections
-    APP <--> DPDK_P0
-    APP <--> DPDK_REP0
-    APP <--> DPDK_REP1
-
-    %% DPDK to PCI Device Binding
-    DPDK_P0 <--> PCI_DEV
-    DPDK_REP0 <--> PCI_DEV
-    DPDK_REP1 <--> PCI_DEV
-
-    %% PCI to Hardware eSwitch
-    PCI_DEV <--> FLOW_ENGINE
-
-    %% eSwitch internal paths
-    FLOW_ENGINE <--> REP0_HW
-    FLOW_ENGINE <--> REP1_HW
-
-    REP0_HW <--> PHY_PORT0
-    REP1_HW <--> PHY_PORT1
-
-    %% Fast Path Bypass
-    PHY_PORT0 <== "Hardware Fast Path Offload (Zero CPU)" ==> FLOW_ENGINE
-    FLOW_ENGINE <== "Hardware Fast Path Offload (Zero CPU)" ==> PHY_PORT1
-
 ```
